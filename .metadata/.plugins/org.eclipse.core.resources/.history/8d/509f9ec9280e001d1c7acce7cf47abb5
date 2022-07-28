@@ -1,0 +1,28 @@
+package Utils;
+import java.sql.*;
+
+
+public class DBUtils {
+
+	private static Connection connection;
+	
+	public static Connection opeanConnection() throws ClassNotFoundException, SQLException
+	{
+		Class.forName("com.mysql.cj.jdbc.Driver");
+		
+		String url = "jdbc:mysql://localhost:3306/sunbeam22?useSSL=false&allowPublicKeyRetrieval=true";
+		
+		return DriverManager.getConnection(url,"root","manager");
+	}
+	
+	public static Connection getConnection()
+	{
+		return connection;
+	}
+	
+	public void closeConnection() throws SQLException
+	{
+		if(connection != null)
+			connection.close();
+	}
+}

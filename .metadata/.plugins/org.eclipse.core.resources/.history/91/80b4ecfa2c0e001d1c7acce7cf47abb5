@@ -1,0 +1,29 @@
+package tester;
+import java.sql.*;
+import java.sql.Connection;
+import static Utils.DBUtils.openConnection;
+
+public class TestStatement {
+
+	public static void main(String[] args) {
+		try (// open fixed db conn
+				Connection cn = openConnection();
+				// create empty statement
+				Statement st = cn.createStatement();
+			ResultSet rst=st.executeQuery("select * from users");)
+				{
+			while (rst.next())
+			{
+				System.out.printf("ID %d Name %s Email %s Reg Amount %.1 Reg Date %S %n",
+						rst.getInt(1), rst.getString(2), rst.getString(3), rst.getDouble(5), rst.getDate(6));
+			}
+		
+		}catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+		
+
+	}
+
+}

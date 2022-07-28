@@ -1,0 +1,25 @@
+package tester;
+import java.sql.*;
+import java.sql.Connection;
+import static Utils.DBUtils.openConnection;
+
+public class TestStatement {
+
+	public static void main(String[] args) {
+		try (// open fixed db conn
+				Connection cn = openConnection();
+				// create empty statement
+				Statement st = cn.createStatement();
+			ResultSet rst=st.executeQuery("select * from users");)
+				{
+			System.out.println("Connected to DB " + cn);
+		
+		}catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+		
+
+	}
+
+}
